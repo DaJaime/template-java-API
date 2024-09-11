@@ -4,5 +4,8 @@
 # Ignore Gradle build output directory
 build
 
+# ide
+.idea
+
 # For MacOs
 .DS_Store
