@@ -20,6 +20,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web:3.3.3'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
 
     testImplementation libs.junit
     testImplementation 'org.springframework.boot:spring-boot-starter-test:3.3.3'
