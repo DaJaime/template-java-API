@@ -1,7 +1,8 @@
 # template-java-API
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE.txt)
+![Latest release](https://img.shields.io/github/v/release/DaJaime/template-java-API)
 
-[![Java CI Gradle build and test](https://github.com/DaJaime/template-java-API/actions/workflows/gradle-build.yml/badge.svg?branch=main)](https://github.com/DaJaime/template-java-API/actions/workflows/gradle-build.yml)
+[![Build & test](https://github.com/DaJaime/template-java-API/actions/workflows/gradle-build.yml/badge.svg?branch=main)](https://github.com/DaJaime/template-java-API/actions/workflows/gradle-build.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DaJaime_template-java-API&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=DaJaime_template-java-API)
 [![codecov](https://codecov.io/gh/DaJaime/template-java-API/graph/badge.svg?token=JCB7CC5FWP)](https://codecov.io/gh/DaJaime/template-java-API)
 
