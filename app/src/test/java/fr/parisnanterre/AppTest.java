@@ -10,7 +10,7 @@ class AppTest {
 
     @Test
     void testMain() {
-        // Vérifie que la méthode main ne lève pas d'exception
+        // Checks that the main method doesn't throw an exception
         assertDoesNotThrow(() -> App.main(new String[] {}));
     }
 }
