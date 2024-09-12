@@ -8,6 +8,23 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'jacoco' // For test coverage
+}
+
+jacoco {
+    toolVersion = "0.8.12" // JaCoCo version
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport // Generates JaCoCo report after testing
+}
+
+jacocoTestReport {
+    reports {
+        xml.required.set(true) // Necessary for badge services to read reports
+        html.required.set(true)
+    }
 }
 
 group = 'fr.parisnanterre'  // Group ID
