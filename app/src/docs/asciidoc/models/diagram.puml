@@ -1,0 +1,43 @@
+@startuml
+
+package fr.parisnanterre {
+    class App {
+        + main(String[] args)
+    }
+
+    package controllers {
+        class HelloController {
+            + getHello() : String
+        }
+    }
+
+    package models {
+            class HelloModel {
+                + sayHello() : String
+            }
+        }
+    ' Relationships
+    App --> HelloController : "creates"
+    HelloController --> HelloModel
+}
+
+' Adding Spring Boot dependencies to highlight Spring context
+package org.springframework {
+    interface SpringApplication
+    interface RestController
+    interface GetMapping
+
+    App --> SpringApplication : "run()"
+    HelloController --> RestController
+    HelloController --> GetMapping
+}
+
+package io.swagger.v3.oas.annotations{
+    interface Operation
+    interface Tag
+
+    HelloController --> Operation
+    HelloController --> Tag
+}
+
+@enduml

@@ -10,6 +10,27 @@ plugins {
     id 'application'
     id 'jacoco' // For test coverage
     id "org.sonarqube" version "4.4.1.3373" // For code quality
+    // For generate doc
+    id 'org.asciidoctor.jvm.convert' version '4.0.2'
+    id 'org.asciidoctor.jvm.pdf' version '4.0.2'
+}
+
+asciidoctor {
+    sourceDir = file('src/docs/asciidoc')
+    outputDir = file("${buildDir}/docs")
+}
+asciidoctorj {
+    requires 'rouge'
+    modules {
+        diagram.use()
+        diagram.version '1.5.16'
+    }
+    attributes 'build-gradle': file('build.gradle'),
+        'sourcedir': project.sourceSets.main.java.srcDirs[0],
+        'source-highlighter': 'rouge',
+        'rouge-style': 'github',
+        'rouge-theme': 'github'
+        
 }
 
 jacoco {
@@ -47,10 +68,12 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web:3.3.3'
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
-
+    // test
     testImplementation libs.junit
     testImplementation 'org.springframework.boot:spring-boot-starter-test:3.3.3'
 }
+
+
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
@@ -62,4 +85,12 @@ java {
 application {
     // Define the main class for the application.
     mainClass = 'fr.parisnanterre.App'
+}
+
+// edit the build task to generate the asciidoc pdf too
+tasks.named('asciidoctor').configure {
+    dependsOn tasks.named('asciidoctorPdf')
+}
+tasks.named('build').configure {
+    dependsOn tasks.named('asciidoctor')
 }
