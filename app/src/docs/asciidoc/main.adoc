@@ -1,0 +1,107 @@
+= ```template-java-API``` Documentation
+Damien Jaime <djaime@parisnanterre.fr>
+
+:plantuml:
+ifndef::modelsdir[:modelsdir: models]
+
+== How to install?
+
+=== Note
+
+Tested with gradle 8.10.1 and Java 17.0.12
+
+=== If you have ```git``` on your computer
+
+Simply run:
+[source,shell]
+----
+git clone https://github.com/DaJaime/template-java-API
+----
+
+=== If you do not have ```git``` on your computer
+
+Go to https://github.com/DaJaime/template-java-API, get the zipfile and uncompress it.
+
+== How to run?
+
+Simply run:
+[source, shell]
+----
+./gradlew run
+----
+
+== What does ```template-java-project``` do?
+
+This project creates a REST API using Spring boot, with a single route returning “Hello”.
+
+Here is the class diagram.
+
+First a file included version without style:
+
+plantuml::src/docs/asciidoc/models/diagram.puml[svg]
+
+Then an inlined version with style:
+
+[plantuml, svg, config="src/docs/asciidoc/models/commons.style"]
+.App class diagram
+----
+@startuml
+
+package fr.parisnanterre {
+    class App {
+        + main(String[] args)
+    }
+
+    package controllers {
+        class HelloController {
+            + getHello() : String
+        }
+    }
+
+    package models {
+            class HelloModel {
+                + sayHello() : String
+            }
+        }
+    ' Relationships
+    App --> HelloController : "creates"
+    HelloController --> HelloModel
+}
+
+' Adding Spring Boot dependencies to highlight Spring context
+package org.springframework {
+    interface SpringApplication
+    interface RestController
+    interface GetMapping
+
+    App --> SpringApplication : "run()"
+    HelloController --> RestController
+    HelloController --> GetMapping
+}
+
+package io.swagger.v3.oas.annotations{
+    interface Operation
+    interface Tag
+
+    HelloController --> Operation
+    HelloController --> Tag
+}
+
+@enduml
+----
+Here is a part of the API source code (using ```include``` but you can also put it directly):
+
+[source,java]
+.HelloController source code
+----
+include::{sourcedir}/fr/parisnanterre/controllers/HelloController.java[indent=0]
+----
+
+== Last comments
+
+Let us end with a recommended book, <<ej3>>.
+
+[bibliography]
+== References
+
+- [[[ej3,1]]] Joshua Bloch. Effective Java, Third Edition. Pearson Education. 2018.

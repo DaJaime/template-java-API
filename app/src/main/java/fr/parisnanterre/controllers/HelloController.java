@@ -1,5 +1,6 @@
 package fr.parisnanterre.controllers;
 
+import fr.parisnanterre.models.HelloModel;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,6 @@ public class HelloController {
             description = "This endpoint returns a simple message saying 'Hello from API'"
     )
     public String getHello() {
-        return "Hello from API";
+        return HelloModel.sayHello();
     }
 }
